@@ -1,0 +1,41 @@
+scalar Date
+type User  {
+	id: ID! 
+	name: String!   
+	email: String! 
+	phone: String!
+  status: String!
+  createdAt: Date   
+  # perfils: [Perfil!]!   
+}
+
+# type Perfil {
+#   id: ID!
+#   description: String!
+#   users: [User!]
+# }
+
+input NewUserClient {
+  name: String!
+  email: String!
+  phone: String!
+  password: String!
+}
+
+input LoginClientInput {
+  email: String!
+  password: String!
+}
+
+type LoginClientOutput {
+  accessToken: String!
+}
+
+type Query {
+  userByEmail(email: String): User
+  loginClient(input: LoginClientInput!): LoginClientOutput
+}
+
+type Mutation {
+  createUserClient(input: NewUserClient!): User!
+}
